@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal {
+        background: white;
+        padding: 20px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="openBtn">Open Modal</button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay">
+      <!-- Modal -->
+      <div class="modal">
+        <h3>Modal Content</h3>
+        <p>Click outside to close</p>
+      </div>
+    </div>
+
+    <script>
+      const openBtn = document.getElementById("openBtn");
+      const overlay = document.getElementById("overlay");
+      const modal = document.querySelector(".modal");
+
+      // Open modal
+      openBtn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+      });
+
+      // Close modal when clicking outside (overlay)
+      overlay.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+
+      // Prevent modal click from bubbling to overlay
+      modal.addEventListener("click", (e) => {
+        e.stopPropagation(); // 🔴 KEY LINE
+      });
+    </script>
+  </body>
+</html>

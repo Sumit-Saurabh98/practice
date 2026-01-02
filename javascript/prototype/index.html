@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Animal(name) {
+        this.name = name;
+      }
+
+      Animal.prototype.sayName = function () {
+        console.log("Hello, I am: ", this.name);
+      };
+
+      function Dog(name, breed) {
+        Animal.call(this, name);
+        this.breed = breed;
+      }
+
+      Dog.prototype.barks = function () {
+        console.log("Woof!");
+      };
+
+      Dog.prototype = Object.create(Animal.prototype)
+      Dog.prototype.constructor = Dog;
+
+      var dog1 = new Dog("max", "labrador")
+
+      dog1.sayName()
+
+      // clone a object
+
+      const student = {
+        student_name: "brain",
+        roll_number: 23,
+        address: {
+            village: "briden",
+            phone: {
+                mobile: 93156
+            }
+        }
+      }
+
+      function deepClone(obj){
+        if(typeof obj !== "object" || obj === null) return obj;
+
+        var clone = Array.isArray(obj) ? [] : {}
+
+        for(var key in obj){
+            if(obj.hasOwnProperty(key)){
+                clone[key] = deepClone(obj[key])
+            }
+        }
+
+        return clone;
+      }
+    </script>
+  </body>
+</html>

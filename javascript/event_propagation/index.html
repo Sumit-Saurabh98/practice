@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="div1">
+DIV1
+        <div class="div2">
+            DIV2
+            <div class="div3">
+                DIV3
+                <button class="button">BUTTON</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="parent" style="width: 100vh; background-color: aquamarine; display: grid; grid-template-columns: repeat(2);">
+        <div style="border: 2px solid red; width: 100px; height: 100px;">Mobile</div>
+        <div style="border: 2px solid red; width: 100px; height: 100px;">Airphone</div>
+        <div style="border: 2px solid red; width: 100px; height: 100px;">Tab</div>
+        <div style="border: 2px solid red; width: 100px; height: 100px;">Laptop</div>
+        <div style="border: 2px solid red; width: 100px; height: 100px;">Desktop</div>
+        <div style="border: 2px solid red; width: 100px; height: 100px;">Monitor</div>
+    </div>
+    
+
+    <script>
+
+        const div1 = document.querySelector(".div1")
+        const div2 = document.querySelector(".div2")
+        const div3 = document.querySelector(".div3")
+        const button = document.querySelector(".button")
+
+        // div1.addEventListener("click", function(event){
+        // event.stopPropagation()
+        //     console.log("div1")
+        // }, {
+        //     capture:true
+        // })
+        // div2.addEventListener("click", function(){
+        //     console.log("div2")
+        // }, {
+        //     capture:true
+        // })
+        // div3.addEventListener("click", function(){
+        //     console.log("div3")
+        // }, {
+        //     capture:true
+        // })
+        // button.addEventListener("click", function(){
+        //     console.log("button")
+        // }, {
+        //     capture:true
+        // })
+
+        div1.addEventListener("click", print)
+        div2.addEventListener("click", print)
+        div3.addEventListener("click", print)
+        button.addEventListener("click", print)
+
+        function print(event){
+            // console.log("event current target tagname", event.currentTarget.tagName)
+            // console.log("event target", event.target.tagName)
+            // console.log("event target", this.target.tagName)
+
+        }
+
+        // event deligation-> instead of adding event to all the all div we can add it to parent div
+
+        const par = document.querySelector(".parent")
+
+        par.addEventListener("click", function(event){
+            console.log(event.target.firstChild.data)
+        })
+
+    </script>
+</body>
+</html>

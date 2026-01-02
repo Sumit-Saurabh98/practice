@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        class Human{
+            constructor(name, age){
+                this.name = name;
+                this.age = age
+            }
+
+            intro(){
+                return `Hey, I am ${this.name} and ${this.age} year's old.'`
+            }
+        }
+
+        const human1 = new Human("sumit", 25)
+
+
+class Teacher extends Human{
+    constructor(name, age, subject){
+        super(name, age)
+        this.subject = subject;
+    }
+
+    teach(){
+        return `${this.name} teaches ${this.subject}.`
+    }
+}
+
+const teacher1 = new Teacher("Sumit", 25, "Mathematics")
+
+// 1 class can have max to max 1 constructor
+
+
+class Shape{
+
+    constructor(name){
+        this.name = name
+    }
+    area(){
+        return 0;
+    }
+}
+
+class Circle extends Shape{
+    constructor(radius){
+        super("Circle")
+        this.radius = radius;
+    }
+
+    area(){
+        return Math.PI * this.radius * this.radius
+    }
+}
+
+class Square extends Shape{
+    constructor(side){
+        super("Square")
+        this.side = side
+    }
+
+    area(){
+        return this.side ** 2
+    }
+}
+
+const circle1 = new Circle(5)
+const square1 = new Circle(5)
+
+
+function pause(millis){
+    return new Promise(function p(resolve){
+        setTimeout(function s() {
+            resolve("resolved")
+        }, 0);
+    })
+}
+
+const start = Date.now();
+console.log("start")
+
+pause(1000).then((res) =>{
+    const end = Date.now();
+    const secs = (end-start)/1000;
+    console.log(res, ":", secs)
+})
+    </script>
+    
+</body>
+</html>

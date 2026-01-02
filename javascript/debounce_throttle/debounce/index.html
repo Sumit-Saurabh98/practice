@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debounce</title>
+</head>
+<body>
+
+  <h1>Implement debouncing</h1>
+  <input type="text" placeholder="search..." class="search">
+  <ul class="result"></ul>
+  
+
+  <script>
+
+    const users = [
+      "Amit",
+      "Rahul",
+      "Rohit",
+      "Ankit",
+      "Sumit",
+      "Saurabh",
+      "Ramesh",
+      "Raj",
+      "Ravi",
+      "Arjun"
+    ]
+
+function search(e){
+  const query = e.target.value.toLowerCase();
+  console.log(query)
+  const ElResult = document.querySelector(".result");
+
+  ElResult.innerHTML = ""
+
+  const filteredUser = users.filter(user => user.toLowerCase().includes(query));
+
+  filteredUser.forEach(user=>{
+    const li = document.createElement("li");
+    li.textContent = user;
+    ElResult.appendChild(li)
+  })
+}
+
+function debounce(fn, delay){
+  let timer;
+
+  return function(...args){
+    clearTimeout(timer);
+
+    timer = setTimeout(()=>{
+      fn.apply(this, args)
+    }, delay)
+  }
+}
+
+const debouncedSearch = debounce(search, 1000)
+
+document.querySelector(".search").addEventListener("keyup", debouncedSearch);
+
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Debounce Search Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h3>Debounced Search (Dummy Data)</h3>
+  <input type="text" id="search" placeholder="Search name..." />
+
+  <ul id="result"></ul>
+
+  <script>
+    // ✅ Dummy data array
+
+    // ✅ HTML element
+
+    const users = [
+      "Amit",
+      "Rahul",
+      "Rohit",
+      "Ankit",
+      "Sumit",
+      "Saurabh",
+      "Ramesh",
+      "Raj",
+      "Ravi",
+      "Arjun"
+    ];
+
+    // ✅ Debounce function
+    function debounce(fn, delay) {
+      let timer;
+
+      return function (...args) {
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+          fn.apply(this, args);
+        }, delay);
+      };
+    }
+
+    // ✅ Search logic
+    function searchUser(e) {
+      const query = e.target.value.toLowerCase();
+      const resultEl = document.getElementById("result");
+
+      resultEl.innerHTML = "";
+
+      const filteredUsers = users.filter(user =>
+        user.toLowerCase().includes(query)
+      );
+
+      filteredUsers.forEach(user => {
+        const li = document.createElement("li");
+        li.textContent = user;
+        resultEl.appendChild(li);
+      });
+    }
+
+    // ✅ Debounced version of search
+    const debouncedSearch = debounce(searchUser, 500);
+
+    document
+      .getElementById("search")
+      .addEventListener("keyup", debouncedSearch);
+  </script>
+
+</body>
+</html> -->

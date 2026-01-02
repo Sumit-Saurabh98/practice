@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compose Pipe</title>
+</head>
+<body>
+    <h1>Compose and Pipe</h1>
+
+    <script>
+        // compose-> right to left
+        // pipe -> left to right
+
+        function addFive(num){
+            return num + 5
+        }
+        function substractTwo(num){
+            return num - 2
+        }
+        function multiplyThree(num){
+            return num * 3
+        }
+
+        function compose(...args){
+            return function(init){
+
+                // let result = init;
+                // for(let i=args.length-1; i>=0; i--){
+                //     result = args[i](result)
+                // }
+
+                // return result;
+
+                // another way
+
+                return args.reduceRight((acc, curr)=>{
+                    return curr(acc)
+                }, init)
+            }
+        }
+
+        const ans = compose(multiplyThree, substractTwo, addFive)
+
+        console.log(ans(5))
+    </script>
+</body>
+</html>
